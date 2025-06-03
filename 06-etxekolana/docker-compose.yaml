@@ -1,0 +1,26 @@
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ariketa
+      MYSQL_USER: ariketa
+      MYSQL_PASSWORD: ariketa
+    volumes:
+      - db_data:/var/lib/mysql
+  ariketa:
+    container_name: ariketa
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8092:80
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ariketa
+      WORDPRESS_DB_PASSWORD: ariketa
+      WORDPRESS_DB_NAME: ariketa
+volumes:
+  db_data:

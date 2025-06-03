@@ -1,0 +1,7 @@
+services:
+  ariketa:
+    container_name: ariketa
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
