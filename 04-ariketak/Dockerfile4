@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+
+COPY main.py /app/main.py
+
+ENV IZENA="Pablo"
+ENV KURTSOA="Docker"
+
+ENTRYPOINT ["python3", "/app/main.py"]
