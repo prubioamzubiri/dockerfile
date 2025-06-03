@@ -1,0 +1,5 @@
+FROM ubuntu
+
+COPY Kaixo.txt /home/
+
+ENTRYPOINT ["cat", "/home/Kaixo.txt"]
