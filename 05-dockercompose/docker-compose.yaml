@@ -1,0 +1,29 @@
+services:
+  ddbb:
+    image: mysql
+    container_name: mysql-nextcloud
+    environment:
+      MYSQL_ROOT_PASSWORD: pasw0rd
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud
+    volumes:
+      - mysql:/var/lib/mysql
+    restart: always
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    ports:
+      - "9080:80"
+    volumes:
+      - ./nextcloud:/var/www/html
+    environment:
+      MYSQL_HOST: ddbb
+      MYSQL_PASSWORD: nextcloud
+      MYSQL_USER: nextcloud
+    restart: always
+    depends_on:
+      - ddbb
+volumes:
+  mysql:
+    driver: local
